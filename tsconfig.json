@@ -3,11 +3,10 @@
     "module": "CommonJS",
     "target": "ES2021",  // 或根据你的 Node.js 版本选择适当的 ECMAScript 目标
     "esModuleInterop": true,
-    "outDir": "./dist",
     "declaration": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true         
   },
-  "include": ["index.ts"]
+  "include": ["src/*","src/index.ts"]
 }

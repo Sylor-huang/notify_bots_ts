@@ -2,7 +2,7 @@
   "name": "notify_bots_ts",
   "version": "1.0.1",
   "type": "module",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "repository": "Sylor-huang/notify_bots_ts",
   "funding": "https://github.com/Sylor-huang/notify_bots_ts.git",
   "license": "MIT",
@@ -10,5 +10,8 @@
     "axios": "^1.6.8",
     "crypto": "^1.0.1",
     "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
   }
 }
