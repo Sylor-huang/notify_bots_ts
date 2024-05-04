@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "type": "module",
   "main": "src/index.ts",
-  "repository": "Sylor-huang/notify_bots",
-  "funding": "https://github.com/Sylor-huang/notify_bots.git",
+  "repository": "Sylor-huang/notify_bots_ts",
+  "funding": "https://github.com/Sylor-huang/notify_bots_ts.git",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.8",
