@@ -1,0 +1,13 @@
+{
+  "name": "notify_bots_ts",
+  "version": "1.0",
+  "main": "src/index.ts",
+  "repository": "Sylor-huang/notify_bots",
+  "funding": "https://github.com/Sylor-huang/notify_bots.git",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "crypto": "^1.0.1",
+    "typescript": "^5.4.5"
+  }
+}
