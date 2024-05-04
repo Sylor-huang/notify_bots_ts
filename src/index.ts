@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 import axios from 'axios';
 
 // 定义接口来描述通知数据和响应结构
