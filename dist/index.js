@@ -1,17 +1,49 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./main"), exports);
+const crypto_1 = __importDefault(require("crypto"));
+const axios_1 = __importDefault(require("axios"));
+// 定义 NotiFyBot 类型
+class NotiFyBot {
+    constructor(url, secret_key) {
+        this.webhookUrl = url;
+        this.secret_key = secret_key;
+    }
+    sign(timestamp) {
+        const hmac = crypto_1.default.createHmac('sha256', `${timestamp}\n${this.secret_key}`);
+        return hmac.digest('base64');
+    }
+    post(data) {
+        if (this.secret_key) {
+            const timestamp = Math.floor(Date.now() / 1000);
+            data.timestamp = timestamp;
+            data.sign = this.sign(timestamp);
+        }
+        return axios_1.default.post(this.webhookUrl, data, {
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+            .then(res => res.data)
+            .catch(error => {
+            console.error('Error:', error);
+            throw error;
+        });
+    }
+    // 方法定义使用 TypeScript 中的类型注释来提高代码清晰度和可维护性
+    sendText(text) {
+        return this.post({
+            msg_type: "text",
+            content: { text }
+        });
+    }
+    sendRich(content) {
+        return this.post({
+            msg_type: "post",
+            content: { post: { zh_cn: content } }
+        });
+    }
+}
+exports.default = NotiFyBot;

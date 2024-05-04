@@ -20,5 +20,8 @@
   // 指定需要编译的文件和目录，这里是 'src' 目录下的所有文件
   "include": [
       "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
